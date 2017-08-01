@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  
+  match '/auth/facebook/logout' => 'application#facebook_logout', :as => :facebook_logout
+  match '/auth/:provider/callback' => 'users/authentications#create'
+  match '/auth/failure' => 'users/authentications#failure'
+  
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'users/registrations', :sessions => 'users/sessions' }
   get 'welcome/index'
 
   get 'welcome/help'
 
   root 'welcome#index'
+  
   
   
   # The priority is based upon order of creation: first created -> highest priority.

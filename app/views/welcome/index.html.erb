@@ -1,13 +1,56 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
-        <%= link_to "AirBnb", '#', id: "logo" %>
+        <%= link_to "AirBnb", '../welcome/index', id: "logo" %>
         <nav>
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to "Become a Host", '#' %></li>
                 <li><%= link_to "Help", '#' %></li>
-                <li><%= link_to "Sign Up", '#' %></li>
-                <li><%= link_to "Log In", '#' %></li>
+                <li><%= link_to "Sign Up", '../users/sign_up' %></li>
+                <li><%= link_to "Log In", '../users/sign_in' %></li>
             </ul>
         </nav>
     </div>
 </header>
+
+<div id="user_nav">
+     <% if user_signed_in? %>
+          Signed in as <%= current_user.email %>.<br />
+          Not you? 
+		
+          <% if session[:fb_token].nil? %>
+               <%= link_to "Sign out", destroy_user_session_path %>
+          <% else %>
+               <%= link_to "Sign out", facebook_logout_path %>
+          <% end %>
+     <% else %>
+          <%= link_to "Sign In", new_user_session_path %>
+          <%= link_to "Sign Up", new_user_registration_path %>
+     <% end %>
+</div>
+
+<div class="container">
+    <p>Airbnb</p>
+    <p>Book unique homes and experience a city like a local.</p>
+</div>
+
+<div class="container">
+    <table>
+        <ul>
+            <li>Where</li>
+            <li>When</li>
+            <li>Guests</li>
+        </ul>
+    </table>
+</div>
+
+<div class="container">
+    <nav>
+        <ul class="nav navbar-nav navbar-left">
+            <li>For You</li>
+            <li>Homes</li>
+            <li>Experiences</li>
+            <li>Places</li>
+        </ul>
+    </nav>
+</div>
+

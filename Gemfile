@@ -17,6 +17,8 @@ gem 'devise'
 
 gem 'bootstrap-sass', '3.3.7'
 
+gem 'omniauth'
+
 gem 'omniauth-facebook'
 
 # Use jquery as the JavaScript library
